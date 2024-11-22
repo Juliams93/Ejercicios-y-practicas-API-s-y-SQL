@@ -2,21 +2,21 @@ CREATE SCHEMA `tienda_zapatillas`;
 USE `tienda_zapatillas`;
 
 CREATE TABLE Zapatillas (
-	id_zapatilla INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-	modelo VARCHAR(45) NOT NULL,
-	color  VARCHAR(45) NOT NULL
+    id_zapatilla INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    modelo VARCHAR(45) NOT NULL,
+    color  VARCHAR(45) NOT NULL
 );
 
 CREATE TABLE Clientes (
-	id_cliente INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-	nombre VARCHAR(45) NOT NULL,
-	numero_telefono INT NOT NULL,
-	email VARCHAR(45) NOT NULL,
-	direccion VARCHAR(45) NOT NULL,
-	ciudad VARCHAR(45) NOT NULL,
-	provincia VARCHAR(45) NOT NULL,
-	pais VARCHAR(45) NOT NULL,
-	codigo_postal VARCHAR(45) NOT NULL
+    id_cliente INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    nombre VARCHAR(45) NOT NULL,
+    numero_telefono INT NOT NULL,
+    email VARCHAR(45) NOT NULL,
+    direccion VARCHAR(45) NOT NULL,
+    ciudad VARCHAR(45) NOT NULL,
+    provincia VARCHAR(45) NOT NULL,
+    pais VARCHAR(45) NOT NULL,
+    codigo_postal VARCHAR(45) NOT NULL
 );
 
 CREATE TABLE Empleados (
@@ -39,6 +39,11 @@ CREATE TABLE Facturas (
     CONSTRAINT fk_factura_empleado FOREIGN KEY (id_empleado) REFERENCES Empleados(id_empleado),
     CONSTRAINT fk_factura_cliente FOREIGN KEY (id_cliente) REFERENCES Clientes(id_cliente)
 );
+
+# 1 En este ejercicio vamos a corregir los errores que hemos encontrado en nuestras tablas. Tabla Zapatillas:
+# Se nos ha olvidado introducir la marca y la talla de las zapatillas que tenemos en nuestra BBDD. Por lo tanto, debemos incluir:
+ALTER TABLE Zapatillas
+ADD COLUMN marca VARCHAR(45) NOT NULL; 
 
 # fk_factura_zapatilla es el nombre que le hemos dado a una clave foránea (foreign key) en la tabla Facturas. Esta clave foránea establece una relación entre la columna id_zapatilla de la tabla Facturas y la columna id_zapatilla de la tabla Zapatillas.
 
